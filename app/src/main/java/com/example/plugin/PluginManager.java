@@ -37,7 +37,7 @@ public class PluginManager {
      * 加载插件（class   layout）
      */
     public int loadPlugin() {
-        File file = new File(Environment.getExternalStorageState() + File.separator + "p.apk");
+        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "p.apk");
         if (!file.exists()) {
             Log.d(TAG, "插件包不存在");
             return -1;
@@ -68,8 +68,6 @@ public class PluginManager {
             e.printStackTrace();
             return -1;
         }
-
-
         return 1;
     }
 
