@@ -17,15 +17,17 @@ public class TestService extends BaseService {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }finally {
-                    Log.d(TAG,"插件服务正在执行中");
+                while (true){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }finally {
+                        Log.d(TAG,"插件服务正在执行中");
+                    }
                 }
             }
-        });
+        }).start();
         return super.onStartCommand(intent, flags, startId);
     }
 

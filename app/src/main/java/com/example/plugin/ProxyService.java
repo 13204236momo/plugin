@@ -22,13 +22,13 @@ public class ProxyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String className = intent.getStringExtra("classname");
+        String className = intent.getStringExtra("className");
         try {
             Class<?> aClass = PluginManager.getInstance(this).getClassLoader().loadClass(className);
             ServiceInterface serviceInterface = (ServiceInterface) aClass.newInstance();
             //注入组建环境
             serviceInterface.insertAppContext(this);
-            serviceInterface.onStartCommand(intent, flags, startId);
+            return serviceInterface.onStartCommand(intent, flags, startId);
         } catch (Exception e) {
             e.printStackTrace();
         }
