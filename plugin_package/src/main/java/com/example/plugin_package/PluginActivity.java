@@ -20,6 +20,14 @@ public class PluginActivity extends BaseActivity {
                 startActivity(new Intent(activity, OtherActivity.class));
             }
         });
+
+        findViewBtId(R.id.btn_service).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, TestService.class);
+                startService(intent);
+            }
+        });
     }
 
 

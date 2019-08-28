@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, ProxyActivity.class);
                                 intent.putExtra("className", activityInfo.name);
                                 startActivity(intent);
-
                             }
                         } else {
                             Toast.makeText(MainActivity.this, "请开启读写权限", Toast.LENGTH_LONG).show();
