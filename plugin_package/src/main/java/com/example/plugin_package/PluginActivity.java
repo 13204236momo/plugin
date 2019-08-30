@@ -1,6 +1,7 @@
 package com.example.plugin_package;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -26,6 +27,25 @@ public class PluginActivity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(activity, TestService.class);
                 startService(intent);
+            }
+        });
+
+
+        findViewBtId(R.id.btn_receiver).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntentFilter intentFilter = new IntentFilter();
+                intentFilter.addAction("com.example.plugin_package.ACTION");
+                registerReceiver(new MyReceiver(), intentFilter);
+            }
+        });
+
+        findViewBtId(R.id.btn_send).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction("com.example.plugin_package.ACTION");
+                sendBroadcast(intent);
             }
         });
     }
