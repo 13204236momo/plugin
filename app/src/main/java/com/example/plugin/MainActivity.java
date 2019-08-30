@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.plugin.utils.PermissionUtility;
+
 import java.io.File;
 
 import io.reactivex.functions.Consumer;
@@ -73,6 +74,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registerStaticReceiver(View view) {
+        PermissionUtility.getRxPermission(MainActivity.this)
+                .request(Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) //申请所需权限
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean granted) throws Exception {
+                        if (granted) {
+                            PluginManager.getInstance(MainActivity.this).parserApkAction();
+                        } else {
+                            Toast.makeText(MainActivity.this, "请开启读写权限", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+    public void sendStaticReceiver(View view) {
+        Intent intent = new Intent();
+        intent.setAction("plugin.static_receiver.ACTION");
+        sendBroadcast(intent);
 
     }
 }

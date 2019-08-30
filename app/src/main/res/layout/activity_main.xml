@@ -17,5 +17,10 @@
         android:layout_height="wrap_content"
         android:onClick="registerStaticReceiver"
         android:text="注册静态广播" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sendStaticReceiver"
+        android:text="发送静态广播" />
 
 </LinearLayout>
