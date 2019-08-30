@@ -1,6 +1,7 @@
 package com.example.plugin;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Environment;
@@ -71,11 +72,35 @@ public class PluginManager {
         return 1;
     }
 
+    /**
+     * 反射系统源，来解析apk文件里的所有信息
+     *
+     * @return
+     */
+    public void parserApkAction() {
+        File file = new File(Environment.getExternalStorageDirectory() + File.separator + "p.apk");
+        if (!file.exists()) {
+            Log.d(TAG, "插件包不存在");
+            return;
+        }
+
+        try {
+            // public Package parsePackage(File packageFile, int flags, boolean useCaches)
+            // 执行此方法  得到package即AndroidManifest的所有内容
+            Class<?> mPackage = Class.forName("android.content.pm.parsePackage");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     public ClassLoader getClassLoader() {
         return dexClassLoader;
     }
 
-    public Resources getResources(){
+    public Resources getResources() {
         return resources;
     }
 }

@@ -16,12 +16,12 @@
             </intent-filter>
         </activity>
 
-        //静态注册的广播
         <receiver android:name=".StaticReceiver">
             <intent-filter>
-                <action android:name="plugin.static_receive"/>
+                <action android:name="plugin.static_receiver.ACTION"/>
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>
